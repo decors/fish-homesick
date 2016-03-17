@@ -1,34 +1,34 @@
 function __fish_homesick_needs_command
-  set cmd (commandline -opc)
-  if [ (count $cmd) -eq 1 -a $cmd[1] = "homesick" ]
-    return 0
-  end
-  return 1
+    set cmd (commandline -opc)
+    if [ (count $cmd) -eq 1 -a $cmd[1] = "homesick" ]
+        return 0
+    end
+    return 1
 end
 
 function __fish_homesick_using_command
-  set cmd (commandline -opc)
-  if [ (count $cmd) -gt 1 ]
-    if [ $argv[1] = $cmd[2] ]
-      return 0
+    set cmd (commandline -opc)
+    if [ (count $cmd) -gt 1 ]
+        if [ $argv[1] = $cmd[2] ]
+            return 0
+        end
     end
-  end
-  return 1
+    return 1
 end
 
 # Castle
 function __fish_homesick_castle
-  homesick list | awk '{ print $1 }'
+    homesick list | awk '{ print $1 }'
 end
 
 for c in 'cd' 'commit' 'destroy' 'diff' 'exec' 'link' 'open' 'pull' 'push' 'rc' 'show_path' 'status' 'unlink'
-  complete -f -c homesick -n "__fish_homesick_using_command $c" -a "(__fish_homesick_castle)"
+    complete -f -c homesick -n "__fish_homesick_using_command $c" -a "(__fish_homesick_castle)"
 end
 
 # Help
 function __fish_homesick_help_topics
-  set -l subcommands 'cd' 'clone' 'commit' 'destroy' 'diff' 'exec' 'exec_all' 'generate' 'help' 'link' 'list' 'open' 'pull' 'push' 'rc' 'show_path' 'status' 'track' 'unlink' 'version'
-  printf "%s\thelp topic\n" $subcommands
+    set -l subcommands 'cd' 'clone' 'commit' 'destroy' 'diff' 'exec' 'exec_all' 'generate' 'help' 'link' 'list' 'open' 'pull' 'push' 'rc' 'show_path' 'status' 'track' 'unlink' 'version'
+    printf "%s\thelp topic\n" $subcommands
 end
 
 complete -f -c homesick -n "__fish_homesick_using_command help" -a "(__fish_homesick_help_topics)"
