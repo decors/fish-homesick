@@ -9,8 +9,8 @@ curl -L https://raw.github.com/decors/fish-homesick/master/completions/homesick.
   --create-dirs -o ~/.config/fish/completions/homesick.fish
 ```
 
-With [Fisherman](https://github.com/fisherman/fisherman)
+With [Fisher](https://github.com/jorgebucaran/fisher)
 
 ```fish
-fisher install decors/fish-homesick
+fisher add decors/fish-homesick
 ```
